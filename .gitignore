@@ -1,0 +1,16 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# misc
+.DS_Store
+*.log
+npm-debug.log*
+.env*.local
+
+# временные файлы проверок
+_tmp_assets/
+tests/artifacts/

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-label="Демо-иллюстрация: врач-фитотерапевт, силуэт за чашкой травяного чая">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#FBF7EE"/>
+      <stop offset="0.55" stop-color="#F1E9D6"/>
+      <stop offset="1" stop-color="#E6D9BC"/>
+    </linearGradient>
+    <linearGradient id="sil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#31452A"/>
+      <stop offset="1" stop-color="#22301F"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#C98A2C" stop-opacity="0.34"/>
+      <stop offset="0.72" stop-color="#C98A2C" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#C98A2C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="640" height="800" fill="url(#bg)"/>
+
+  <!-- арка «аптечного окна» -->
+  <rect x="34" y="34" width="572" height="732" rx="40" fill="none" stroke="rgba(34,48,31,.18)" stroke-width="2"/>
+  <path d="M320 66 C 150 66 90 150 90 260 L90 560 C90 640 160 680 320 680 C480 680 550 640 550 560 L550 260 C550 150 490 66 320 66 Z" fill="rgba(255,255,255,.5)"/>
+  <path d="M320 86 C 168 86 112 160 112 262 L112 552 C112 626 176 660 320 660 C464 660 528 626 528 552 L528 262 C528 160 472 86 320 86 Z" fill="none" stroke="rgba(62,107,53,.4)" stroke-width="2"/>
+
+  <circle cx="330" cy="330" r="210" fill="url(#sun)"/>
+
+  <!-- силуэт врача (гравюрная бумажная вырезка) -->
+  <g fill="url(#sil)">
+    <path d="M300 452
+      C 278 416 250 382 244 330
+      C 238 262 286 214 350 210
+      C 398 207 434 230 452 268
+      C 462 288 466 306 456 322
+      C 476 332 484 356 468 372
+      C 458 380 452 376 446 372
+      C 454 386 452 400 440 408
+      C 430 414 424 426 416 438
+      C 404 452 394 452 390 452
+      Z"/>
+    <path d="M196 664
+      C 196 540 236 472 306 460
+      C 336 454 368 454 392 466
+      C 438 486 470 544 484 664
+      Z"/>
+  </g>
+
+  <!-- воротник халата -->
+  <path d="M298 470 C 320 500 356 500 380 468 L356 560 L316 560 Z" fill="#F7F3EA"/>
+
+  <!-- листья-веточки вокруг -->
+  <g stroke="#3E6B35" stroke-width="2.6" fill="none" stroke-linecap="round">
+    <path d="M104 580 C 118 548 128 522 148 492"/>
+    <path d="M120 540 C 106 536 98 524 100 510 C 114 510 122 518 120 540Z" fill="#3E6B35" stroke="none"/>
+    <path d="M136 516 C 124 514 116 502 118 488 C 132 488 140 496 136 516Z" fill="#3E6B35" stroke="none"/>
+    <path d="M152 490 C 142 490 134 480 136 468 C 148 468 154 474 152 490Z" fill="#3E6B35" stroke="none"/>
+  </g>
+  <g transform="scale(-1,1) translate(-640 0)">
+    <g stroke="#3E6B35" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".85">
+      <path d="M104 580 C 118 548 128 522 148 492"/>
+      <path d="M120 540 C 106 536 98 524 100 510 C 114 510 122 518 120 540Z" fill="#3E6B35" stroke="none"/>
+      <path d="M136 516 C 124 514 116 502 118 488 C 132 488 140 496 136 516Z" fill="#3E6B35" stroke="none"/>
+    </g>
+  </g>
+
+  <!-- чашка с паром на столе -->
+  <g>
+    <path d="M168 640 L472 640" stroke="rgba(34,48,31,.3)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M268 596 C 268 628 300 648 334 648 C 368 648 400 628 400 596 L400 556 L268 556 Z" fill="#F7F3EA" stroke="#22301F" stroke-width="3"/>
+    <path d="M400 570 C 424 570 442 586 442 606 C 442 626 424 640 402 640" fill="none" stroke="#22301F" stroke-width="3"/>
+    <ellipse cx="334" cy="556" rx="66" ry="13" fill="#8FA98A"/>
+    <path d="M334 572 C 336 550 340 534 350 518" stroke="#C98A2C" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- подпись-штамп -->
+  <g transform="rotate(-8 522 150)">
+    <circle cx="522" cy="150" r="44" fill="none" stroke="#C98A2C" stroke-width="2.5" opacity=".9"/>
+    <circle cx="522" cy="150" r="37" fill="none" stroke="#C98A2C" stroke-width="1" opacity=".6"/>
+    <text x="522" y="146" text-anchor="middle" font-family="Georgia, serif" font-size="17" font-weight="700" fill="#C98A2C">А.Ветров</text>
+    <text x="522" y="166" text-anchor="middle" font-family="sans-serif" font-size="8.5" letter-spacing="1.5" fill="#C98A2C">ФИТОТЕРАПЕВТ</text>
+  </g>
+
+  <text x="320" y="712" text-anchor="middle" font-family="Georgia, serif" font-size="19" font-style="italic" fill="#6F7559">демо-портрет · силуэт вместо стокового фото</text>
+</svg>

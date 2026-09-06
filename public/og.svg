@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBF8F1"/>
+      <stop offset="1" stop-color="#E9DFC8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1010" cy="180" r="180" fill="#C98A2C" opacity="0.14"/>
+  <path d="M120 520 C 90 430 150 340 260 300" stroke="#3E6B35" stroke-width="7" fill="none" stroke-linecap="round" opacity=".5"/>
+  <g transform="translate(180 470)">
+    <path d="M0 0 C -26 -40 -60 -58 -100 -58 C -100 -10 -70 16 -36 24 L0 0 Z" fill="#3E6B35"/>
+    <path d="M0 0 C -4 -48 14 -98 54 -140" stroke="#3E6B35" stroke-width="7" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="120" y="210" font-family="Georgia, serif" font-size="92" font-weight="700" fill="#22301F">Спутник <tspan fill="#3E6B35">Фито</tspan></text>
+  <text x="122" y="290" font-family="Georgia, serif" font-size="40" font-style="italic" fill="#22301F">фитосборы врача-фитотерапевта</text>
+  <text x="122" y="360" font-family="Arial, sans-serif" font-size="30" fill="#6F7559">подбор по задаче · курс 1 месяц · честные цены</text>
+  <rect x="120" y="420" width="280" height="66" rx="33" fill="#C98A2C"/>
+  <text x="260" y="464" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#22301F">демо-эталон сайта</text>
+  <text x="120" y="570" font-family="monospace, sans-serif" font-size="24" letter-spacing="4" fill="#6F7559">SHAMANCHI · ДЕМО-САЙТ НЕ ПРОДАЁТ ТОВАРЫ</text>
+</svg>

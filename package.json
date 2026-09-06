@@ -1,0 +1,24 @@
+{
+  "name": "shamanchi-phyto",
+  "version": "1.0.0",
+  "private": true,
+  "description": "«Спутник Фито» — эталонный демо-лендинг фито-магазина. Next.js + Tailwind, статический экспорт на GitHub Pages.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "preview": "next start",
+    "assets": "node scripts/fetch-assets.mjs && node scripts/gen-product-art.mjs",
+    "test:acceptance": "node tests/acceptance.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.25",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "playwright-core": "^1.52.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}

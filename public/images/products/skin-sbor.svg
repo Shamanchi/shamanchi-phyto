@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" role="img" aria-label="Сбор «Чистая кожа»">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBF8F1"/>
+      <stop offset="1" stop-color="#EFE7D6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#A8704F" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#A8704F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="700" height="700" fill="url(#bg)"/>
+  <rect x="14" y="14" width="672" height="672" rx="34" fill="none" stroke="rgba(34,48,31,.14)" stroke-width="2"/>
+  <rect width="700" height="700" fill="url(#glow)"/>
+  <g transform="translate(78 620) "><path d="M0 0 C 4 -14 10 -26 18 -38" stroke="#A8704F" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M5 -12 C -2 -12 -6 -7 -5 -1 C 2 -2 5 -7 5 -12Z" fill="#A8704F" opacity=".8"/>
+    <path d="M11 -24 C 3 -25 -1 -20 0 -14 C 7 -15 11 -19 11 -24Z" fill="#A8704F" opacity=".8"/>
+    <path d="M17 -36 C 10 -37 6 -32 7 -26 C 13 -27 17 -31 17 -36Z" fill="#A8704F" opacity=".8"/></g>
+  <g transform="translate(620 108) scale(-1,1)"><path d="M0 0 C 4 -14 10 -26 18 -38" stroke="#A8704F" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M5 -12 C -2 -12 -6 -7 -5 -1 C 2 -2 5 -7 5 -12Z" fill="#A8704F" opacity=".8"/>
+    <path d="M11 -24 C 3 -25 -1 -20 0 -14 C 7 -15 11 -19 11 -24Z" fill="#A8704F" opacity=".8"/>
+    <path d="M17 -36 C 10 -37 6 -32 7 -26 C 13 -27 17 -31 17 -36Z" fill="#A8704F" opacity=".8"/></g>
+  <g transform="translate(86 150) scale(1) "><path d="M0 0 C -14 -22 -34 -30 -56 -30 C -56 -6 -42 8 -24 12 L0 0 Z" fill="#8FA98A" opacity="0.75"/><path d="M-8 -6 C -20 -16 -36 -22 -52 -24" stroke="#F7F3EA" stroke-width="1.6" fill="none" opacity="0.8"/></g>
+  <g transform="translate(610 560) scale(1.1) scale(-1,1)"><path d="M0 0 C -14 -22 -34 -30 -56 -30 C -56 -6 -42 8 -24 12 L0 0 Z" fill="#8FA98A" opacity="0.75"/><path d="M-8 -6 C -20 -16 -36 -22 -52 -24" stroke="#F7F3EA" stroke-width="1.6" fill="none" opacity="0.8"/></g>
+  <g>
+    <rect x="170" y="190" width="360" height="420" rx="57.6" fill="#D9C49A"/>
+    <rect x="180" y="198" width="340" height="404" rx="51" fill="none" stroke="rgba(34,48,31,.25)" stroke-width="2"/>
+    <path d="M234.8 194 C 234.8 170 465.2 170 465.2 194" fill="none" stroke="#A8704F" stroke-width="5"/>
+    <ellipse cx="350" cy="216" rx="108" ry="12" fill="#A8704F"/>
+    <text x="350" y="224" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#F7F3EA">СПУТНИК ФИТО</text>
+    <rect x="196" y="524" width="308" height="56" rx="12" fill="#F7F3EA"/>
+    <text x="350" y="548" text-anchor="middle" font-family="Georgia, serif" font-size="21" font-weight="700" fill="#22301F">Чистая кожа</text>
+    <text x="350" y="566" text-anchor="middle" font-family="sans-serif" font-size="9.5" letter-spacing="2" fill="#6F7559">КУРС · 1 МЕСЯЦ</text>
+  </g>
+  <text x="350" y="668" text-anchor="middle" font-family="Georgia, serif" font-size="17" font-style="italic" fill="#6F7559">Традиционно применяется для поддержания чист…</text>
+</svg>
