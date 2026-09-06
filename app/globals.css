@@ -19,6 +19,14 @@ body {
   overflow-x: hidden;
 }
 
+/* Контейнер контента: единый для лендинга и маркетплейс-страниц */
+.wrap {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
+}
+
 /* Бумажное зерно поверх всего сайта */
 body::after {
   content: "";
@@ -58,18 +66,13 @@ a, button, input, textarea, select, [tabindex] {
 .rv-d3 { transition-delay: 0.26s; }
 .rv-d4 { transition-delay: 0.36s; }
 
-/* --- Декоративные листья, дрейфующие в hero --- */
-@keyframes floatLeaf {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-22px) rotate(6deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-.float-leaf {
-  animation: floatLeaf 9s ease-in-out infinite;
-  transform-origin: center;
-}
-.float-leaf-slow {
-  animation-duration: 14s;
+/* --- Статичный фон «пыльца» для prefers-reduced-motion (без канваса) --- */
+.bg-pollen-static {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(201, 138, 44, 0.4) 1px, transparent 1.7px),
+    radial-gradient(circle at 1px 1px, rgba(143, 169, 138, 0.34) 1px, transparent 1.7px);
+  background-size: 150px 150px, 200px 200px;
+  background-position: 0 0, 40px 60px;
 }
 
 /* --- Мягкое покачивание карточек-печатей --- */
@@ -218,6 +221,26 @@ a, button, input, textarea, select, [tabindex] {
   }
 }
 
+/* --- Поля форм маркетплейса: лёгкий «бумажный» стиль --- */
+.field {
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1px solid #d8cdb2;
+  background: #fffdf7;
+  padding: 0.7rem 0.95rem;
+  font-size: 15px;
+  color: #22301f;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.field::placeholder {
+  color: rgba(34, 48, 31, 0.38);
+}
+.field:focus {
+  outline: none;
+  border-color: #3e6b35;
+  box-shadow: 0 0 0 3px rgba(62, 107, 53, 0.16);
+}
+
 /* --- Кастомный скроллбар --- */
 * {
   scrollbar-width: thin;
@@ -228,7 +251,8 @@ a, button, input, textarea, select, [tabindex] {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .float-leaf, .sway, .wisp, .scanlines::after, .sprout, .rise-in, .progress-line {
+  .sway, .wisp, .scanlines::after, .sprout, .rise-in, .progress-line {
     animation: none !important;
   }
+  .wisp { opacity: 0 !important; }
 }

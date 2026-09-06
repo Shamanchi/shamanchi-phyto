@@ -1,47 +1,19 @@
 "use client";
 
 import { asset } from "../lib/site";
-
-function LeafDecor({ className, flip = false }) {
-  return (
-    <svg
-      viewBox="0 0 64 64"
-      aria-hidden="true"
-      className={className}
-      style={flip ? { transform: "scaleX(-1)" } : undefined}
-      fill="none"
-    >
-      <path
-        d="M8 56C6 34 22 14 52 10c2 28-10 46-34 46"
-        fill="rgba(62,107,53,.16)"
-        stroke="rgba(62,107,53,.55)"
-        strokeWidth="1.6"
-      />
-      <path d="M8 56C18 40 30 26 52 10" stroke="rgba(62,107,53,.55)" strokeWidth="1.4" />
-      <path d="M20 46c6-8 15-16 26-22M28 50c5-5 12-11 20-16" stroke="rgba(62,107,53,.4)" strokeWidth="1.2" />
-    </svg>
-  );
-}
+import HeroLeaves from "./live/HeroLeaves";
 
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden pb-10 pt-28 sm:pt-32 lg:pb-16">
-      {/* декоративные листья с параллаксом */}
-      <div className="pointer-events-none absolute -left-10 top-40 hidden opacity-80 md:block">
-        <div className="float-leaf"><LeafDecor className="h-24 w-24" /></div>
-      </div>
-      <div className="pointer-events-none absolute -right-14 top-24 hidden opacity-70 md:block">
-        <div className="float-leaf float-leaf-slow"><LeafDecor className="h-32 w-32" flip /></div>
-      </div>
-      <div className="pointer-events-none absolute bottom-24 left-[42%] hidden opacity-60 lg:block">
-        <div className="float-leaf" style={{ animationDelay: "2s" }}><LeafDecor className="h-16 w-16" /></div>
-      </div>
+      {/* слой 2 «листья»: tsParticles, только первый экран и десктоп */}
+      <HeroLeaves />
 
       <div className="wrap relative grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
         <div className="relative z-10 max-w-2xl">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-sage/50 bg-cream/70 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-khaki">
             <span className="h-1.5 w-1.5 rounded-full bg-leaf" aria-hidden="true" />
-            фито-спутник · демонстрационный эталон v1
+            демо-маркетплейс · сайт для фито-магазина
           </p>
 
           <h1 className="font-display text-[44px] font-semibold leading-[1.04] tracking-tight text-ink sm:text-6xl lg:text-[68px]">
@@ -78,7 +50,7 @@ export default function Hero() {
           </div>
 
           <p className="mt-7 font-mono text-[11px] uppercase tracking-[0.12em] text-khaki">
-            Доставка по России · СДЭК / Почта России — без порогов и наценок за «бесплатно»
+            Каталог, корзина и оформление заказа · СДЭК / Почта России
           </p>
         </div>
 

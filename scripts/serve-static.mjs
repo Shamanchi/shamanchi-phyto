@@ -44,9 +44,16 @@ export function startServer({ root = join(rootDir, "out"), port = PORT, base = B
       res.end("Forbidden");
       return;
     }
-    if (existsSync(file) && statSync(file).isFile()) {
-      res.writeHead(200, { "Content-Type": MIME[extname(file).toLowerCase()] || "application/octet-stream" });
-      createReadStream(file).pipe(res);
+    let target = file;
+    if (existsSync(target) && statSync(target).isDirectory()) {
+      // GitHub Pages отдаёт /catalog/ -> /catalog/index.html; повторяем локально
+      target = join(target, "index.html");
+    } else if (!extname(target) && existsSync(target + ".html")) {
+      target = target + ".html";
+    }
+    if (existsSync(target) && statSync(target).isFile()) {
+      res.writeHead(200, { "Content-Type": MIME[extname(target).toLowerCase()] || "application/octet-stream" });
+      createReadStream(target).pipe(res);
     } else {
       res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
       res.end("404: файл не найден");

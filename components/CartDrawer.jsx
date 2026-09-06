@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import products from "../data/products.json";
-import { asset, formatPrice, TG_HANDLE } from "../lib/site";
+import { asset, formatPrice, SHOP } from "../lib/site";
 import { useShop } from "./ShopContext";
 
 export default function CartDrawer() {
-  const { items, setQty, clear, count, total, cartOpen, setCartOpen, checkoutUrl } = useShop();
+  const { items, setQty, remove, clear, count, subtotal, discount, total, cartOpen, setCartOpen } = useShop();
 
   useEffect(() => {
     if (!cartOpen) return;
@@ -32,7 +33,6 @@ export default function CartDrawer() {
       aria-hidden={!cartOpen}
       inert={!cartOpen}
     >
-      {/* подложка */}
       <button
         type="button"
         aria-label="Закрыть корзину"
@@ -40,7 +40,6 @@ export default function CartDrawer() {
         className="absolute inset-0 h-full w-full cursor-default bg-ink/45 backdrop-blur-[2px]"
         tabIndex={-1}
       />
-      {/* панель */}
       <aside
         role="dialog"
         aria-modal="true"
@@ -57,9 +56,9 @@ export default function CartDrawer() {
             type="button"
             onClick={() => setCartOpen(false)}
             aria-label="Закрыть"
-            className="grid h-10 w-10 place-items-center rounded-full border border-line bg-cream text-ink transition hover:border-leaf"
+            className="grid h-10 w-10 place-items-center rounded-full border border-line bg-cream text-ink/70 transition hover:border-honey hover:text-honeyDark"
           >
-            <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <path d="M5 5l10 10M15 5 5 15" />
             </svg>
           </button>
@@ -76,15 +75,15 @@ export default function CartDrawer() {
               </span>
               <div>
                 <p className="font-display text-xl font-semibold">Пока пусто</p>
-                <p className="mt-1 text-sm text-ink/60">Загляните в витрину — там сборы под вашу задачу.</p>
+                <p className="mt-1 text-sm text-ink/60">Загляните в каталог — там сборы под вашу задачу.</p>
               </div>
-              <a
-                href="#vitrina"
+              <Link
+                href="/catalog/"
                 onClick={() => setCartOpen(false)}
                 className="rounded-full bg-leaf px-6 py-2.5 text-[15px] font-bold text-paper transition hover:bg-leafDark"
               >
-                Перейти к витрине
-              </a>
+                Перейти в каталог
+              </Link>
             </div>
           ) : (
             <ul className="space-y-4">
@@ -99,7 +98,9 @@ export default function CartDrawer() {
                   />
                   <div className="min-w-0 flex-1">
                     <p className="font-display text-[17px] font-semibold leading-tight">{product.name}</p>
-                    <p className="mt-0.5 text-[12px] text-khaki">{formatPrice(product.price)} / курс</p>
+                    <p className="mt-0.5 text-[12px] text-khaki">
+                      {formatPrice(product.price)} / {SHOP.courseLabel}
+                    </p>
                     <div className="mt-2 flex items-center justify-between gap-2">
                       <div className="flex items-center rounded-full border border-line bg-paper">
                         <button
@@ -122,6 +123,13 @@ export default function CartDrawer() {
                       </div>
                       <p className="text-[15px] font-extrabold text-honeyDark">{formatPrice(product.price * qty)}</p>
                     </div>
+                    <button
+                      type="button"
+                      onClick={() => remove(product.id)}
+                      className="mt-2 inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-wider text-ink/45 transition hover:text-honeyDark"
+                    >
+                      Удалить
+                    </button>
                   </div>
                 </li>
               ))}
@@ -132,21 +140,30 @@ export default function CartDrawer() {
         {rows.length > 0 && (
           <div className="border-t border-line bg-cream px-5 py-4">
             <div className="flex items-center justify-between text-[15px] font-semibold">
-              <span>Итого за курс(ы)</span>
+              <span>Товары ({count})</span>
+              <span>{formatPrice(subtotal)}</span>
+            </div>
+            {discount > 0 && (
+              <div className="mt-1 flex items-center justify-between text-[14px] font-semibold text-leaf">
+                <span>Скидка по промокоду</span>
+                <span>−{formatPrice(discount)}</span>
+              </div>
+            )}
+            <div className="mt-1 flex items-center justify-between text-[15px] font-semibold">
+              <span>Итого</span>
               <span className="text-xl font-extrabold text-ink">{formatPrice(total)}</span>
             </div>
             <p className="mt-1 text-[12px] leading-snug text-ink/55">
-              Демо-корзина: оплата не проводится. Заказ уходит готовым сообщением в телеграм {TG_HANDLE}.
+              Демо-корзина: оплата не проводится, заказ оформляется в демо-режиме.
             </p>
             <div className="mt-3 flex gap-2">
-              <a
-                href={checkoutUrl}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/cart/"
+                onClick={() => setCartOpen(false)}
                 className="flex-1 rounded-full bg-leaf px-5 py-3 text-center text-[16px] font-bold text-paper transition hover:bg-leafDark"
               >
-                Оформить в телеграме
-              </a>
+                К оформлению
+              </Link>
               <button
                 type="button"
                 onClick={clear}

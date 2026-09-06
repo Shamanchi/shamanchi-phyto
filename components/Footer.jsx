@@ -1,4 +1,5 @@
-import { NAV_LINKS, TG_HANDLE, TG_URL, MAIL, ORBIT_URL } from "../lib/site";
+import Link from "next/link";
+import { BRAND, TG_HANDLE, TG_URL, MAIL, ORBIT_URL } from "../lib/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -7,7 +8,7 @@ export default function Footer() {
       <div className="wrap py-12">
         <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
           <div>
-            <a href="#top" className="flex items-center gap-2.5" aria-label="Спутник Фито — наверх">
+            <Link href="/" className="flex items-center gap-2.5" aria-label={`${BRAND.name} — на главную`}>
               <span className="grid h-9 w-9 place-items-center rounded-full bg-leaf text-paper">
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
                   <path d="M12 21c-4.5-2-7-5.6-7-9.6C5 6.7 8.5 4 12 3c3.5 1 7 3.7 7 8.4 0 4-2.5 7.6-7 9.6Z" />
@@ -15,28 +16,41 @@ export default function Footer() {
                 </svg>
               </span>
               <span className="font-display text-[22px] font-semibold leading-none">
-                Спутник <span className="text-leaf">Фито</span>
+                {BRAND.wordmarkA} <span className="text-leaf">{BRAND.wordmarkB}</span>
               </span>
-            </a>
+            </Link>
             <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-ink/75">
-              Демонстрационный лендинг-магазин фитосборов врача-фитотерапевта.
-              Эталон разработки сайтов для ниши товаров здоровья.
+              Демонстрационный маркетплейс фито-ниши: каталог с фильтрами, карточки, корзина,
+              оформление заказа. Эталон разработки сайтов для ниши товаров здоровья.
             </p>
             <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink/70">
-              разработка — Shamanchi · демо-эталон v1
+              разработка — Shamanchi · демо-маркетплейс v1
             </p>
           </div>
 
           <nav aria-label="Навигация в подвале">
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/70">страницы</p>
             <ul className="mt-4 space-y-2.5">
-              {[...NAV_LINKS, { href: "#proizvodstvo", label: "Производство" }, { href: "#demo", label: "Это демонстрация" }].map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-[15px] font-semibold text-ink/75 transition hover:text-leaf">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link href="/catalog/" className="text-[15px] font-semibold text-ink/75 transition hover:text-leaf">
+                  Каталог
+                </Link>
+              </li>
+              <li>
+                <Link href="/account/" className="text-[15px] font-semibold text-ink/75 transition hover:text-leaf">
+                  Мои заказы
+                </Link>
+              </li>
+              <li>
+                <Link href="/#vitrina" className="text-[15px] font-semibold text-ink/75 transition hover:text-leaf">
+                  Витрина
+                </Link>
+              </li>
+              <li>
+                <Link href="/#demo" className="text-[15px] font-semibold text-ink/75 transition hover:text-leaf">
+                  Это демонстрация
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -65,14 +79,14 @@ export default function Footer() {
               </li>
             </ul>
             <p className="mt-4 font-mono text-[10px] leading-relaxed text-ink/70">
-              заявка-эталон: @PavelYrevichh · Shamanchi
+              заявка-эталон: {TG_HANDLE} · Shamanchi
             </p>
           </div>
         </div>
 
         <div className="mt-10 space-y-2 border-t border-line pt-6 font-mono text-[11px] leading-relaxed text-ink/70">
           <p>
-            Сайт является демонстрацией разработки: «Спутник Фито» и врач-основатель — вымышленные
+            Сайт является демонстрацией разработки: {BRAND.name} и врач-основатель — вымышленные
             персонажи, товары и отзывы не существуют. Сайт не продаёт товары и не собирает данные.
           </p>
           <p>

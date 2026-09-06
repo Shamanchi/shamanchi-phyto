@@ -1,24 +1,21 @@
 import "./globals.css";
 import "./fonts.css";
-import { SITE_URL, SITE_PATH, MAIL } from "../lib/site";
+import { BRAND, SEO, SITE_PATH, SITE_URL } from "../lib/site";
+import { ShopProvider } from "../components/ShopContext";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+import CartDrawer from "../components/CartDrawer";
+import LivePollen from "../components/live/LivePollenMount";
+
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Спутник Фито — сайт для фито-магазина и бренда БАД",
-    template: "%s · Спутник Фито",
+    default: SEO.titleDefault,
+    template: `%s · ${BRAND.name}`,
   },
-  description:
-    "Демонстрационный лендинг-магазин фитосборов врача-фитотерапевта: подбор по задаче, витрина курсов на месяц, честные цены. Эталон разработки сайтов для ниши товаров здоровья — Shamanchi.",
-  keywords: [
-    "сайт для фито-магазина",
-    "сайт для бренда БАД",
-    "разработка интернет-магазина трав",
-    "фитосборы",
-    "фитотерапевт",
-    "лендинг товаров здоровья",
-    "Shamanchi",
-  ],
+  description: SEO.description,
+  keywords: SEO.keywords,
   alternates: { canonical: "/" },
   icons: {
     icon: SITE_PATH + "/favicon.svg",
@@ -27,16 +24,16 @@ export const metadata = {
     type: "website",
     locale: "ru_RU",
     url: SITE_URL,
-    siteName: "Спутник Фито · демо-эталон",
-    title: "Спутник Фито — фитосборы врача-фитотерапевта. Демо-эталон сайта для ниши здоровья",
+    siteName: `${BRAND.name} · демо-эталон`,
+    title: "Сайт для фито-магазина и сайт для бренда БАД — демо-эталон «Спутник Фито»",
     description:
-      "Лицо и имя вместо акций. Подбор по задаче, курс на месяц, честные цены, безопасные формулировки. Такой сайт можно заказать для вашего дела — Shamanchi.",
-    images: [{ url: `${SITE_URL}/og.svg`, width: 1200, height: 630, alt: "Спутник Фито — демо-лендинг фито-магазина" }],
+      "Каталог с фильтрами, корзина, оформление заказа, живой фон и тексты под целевую аудиторию. Демо-витрина разработки — Shamanchi.",
+    images: [{ url: `${SITE_URL}/og.svg`, width: 1200, height: 630, alt: "Спутник Фито — демо-маркетплейс фито-ниши" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Спутник Фито — фитосборы врача-фитотерапевта",
-    description: "Демо-эталон сайта для ниши товаров здоровья. Заказать такой — Shamanchi.",
+    title: "Сайт для фито-магазина и сайт для бренда БАД — демо-эталон",
+    description: "Демо-витрина разработки Shamanchi: маркетплейс товаров здоровья под ключ.",
     images: [`${SITE_URL}/og.svg`],
   },
   robots: { index: true, follow: true },
@@ -71,7 +68,13 @@ export default function RootLayout({ children }) {
         >
           Перейти к содержанию
         </a>
-        {children}
+        <ShopProvider>
+          <LivePollen />
+          <Nav />
+          {children}
+          <Footer />
+          <CartDrawer />
+        </ShopProvider>
         <noscript>
           <style>{`.rv{opacity:1 !important;transform:none !important;}`}</style>
         </noscript>

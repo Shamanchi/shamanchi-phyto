@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Reveal from "./Reveal";
-import { TG_HANDLE, TG_URL, MAIL, asset } from "../lib/site";
+import { BRAND, TG_HANDLE, TG_URL, MAIL, asset } from "../lib/site";
 
 const WHAT_SELL = [
   "Фитосборы / травяные чаи",
@@ -46,13 +46,13 @@ export default function DemoBlock() {
 
   const message = useMemo(() => {
     const lines = [
-      "Здравствуйте! Хочу заказать сайт для своего дела — как «Спутник Фито».",
+      "Здравствуйте! Хочу заказать сайт, который работает с нашей целевой аудиторией.",
       "",
-      `Что продаю: ${q1}`,
+      `Что продаём: ${q1}`,
       `Аудитория: ${q2}`,
-      `Где меня найти: ${q3}`,
+      `Где вас найти: ${q3}`,
       "",
-      "Расскажите, что нужно для старта.",
+      `Понравился демо-маркетплейс «${BRAND.name}» — хочу обсудить такой для своего бренда.`,
     ];
     return lines.join("\n");
   }, [q1, q2, q3]);
@@ -83,6 +83,12 @@ export default function DemoBlock() {
     window.setTimeout(() => setCopied(false), 2200);
   };
 
+  const doctorInitials = BRAND.doctorName
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .slice(0, 2);
+
   return (
     <section id="demo" className="scroll-mt-24 py-16 sm:py-24">
       <div className="wrap">
@@ -99,25 +105,27 @@ export default function DemoBlock() {
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-terminal/70">
                 <span className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-terminal" aria-hidden="true" />
-                  shamanchi / phyto-satellite v1
+                  shamanchi / phyto-marketplace v1
                 </span>
-                <span className="hidden sm:inline text-nightLine">// тёмный островок внутри тёплого мира — наша фирменная печать</span>
+                <span className="hidden sm:inline text-nightLine">// этот сайт — демонстрация, а не шаблон</span>
               </div>
 
-              <h2 className="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-[54px]">
-                Этот сайт — эталон. Такой можно заказать{" "}
-                <span className="text-terminal">для вашего дела</span>.
+              {/* Ключевое сообщение — первым пунктом демо-блока */}
+              <h2 className="mt-6 max-w-4xl font-display text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-[54px]">
+                Мы делаем дизайн, который работает{" "}
+                <span className="text-terminal">с вашей целевой аудиторией</span>
               </h2>
-              <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-nightText/75">
-                Типовой магазин продаёт через скидку. Этот — через доверие. Мы делаем сайты для
-                брендов, где за товаром стоит человек с именем. Ваше дело заслуживает такого же дома.
+              <p data-demo-first-point className="mt-5 max-w-2xl text-[16px] leading-relaxed text-nightText/75">
+                Каждый наш сайт — мир ваших клиентов, а не наш шаблон. Сначала мы смотрим, как ваша
+                аудитория выбирает и покупает, — и только потом собираем страницы, каталог, корзину
+                и тексты под эти сценарии. Этот демо-сайт — живой пример такого подхода.
               </p>
 
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">
                 {[
-                  ["01", "Лицо вместо акций", "Врач-основатель и его позиция в первом экране, а не «−20% на всё»"],
-                  ["02", "Удержание вместо разовой продажи", "Подбор по задаче, курс на месяц, клиент возвращается сам"],
-                  ["03", "Безопасные формулировки вместо рисков", "«Поддерживает» и «традиционно применяется» — рекламу не режут"],
+                  ["01", "Маркетплейс, а не лендинг", "Каталог с фильтрами, карточки, корзина и оформление заказа — уже в демо, без «в разработке»"],
+                  ["02", "Лицо вместо акций", "Врач-основатель и его позиция в первом экране, а не «−20% на всё»"],
+                  ["03", "Безопасные формулировки", "«Поддерживает» и «традиционно применяется» — рекламу не режут"],
                 ].map(([num, title, text]) => (
                   <li key={num} className="rounded-2xl border border-nightLine bg-night/70 p-5">
                     <span className="font-mono text-[11px] text-terminal/70">[{num}]</span>
@@ -149,14 +157,14 @@ export default function DemoBlock() {
 
                 <MiniMock label="стало · этот сайт" tone="is">
                   <div className="flex items-center gap-2.5">
-                    <span className="grid h-9 w-9 place-items-center rounded-full bg-leaf/80 text-[11px] font-extrabold text-paper">АВ</span>
+                    <span className="grid h-9 w-9 place-items-center rounded-full bg-leaf/80 text-[11px] font-extrabold text-paper">{doctorInitials}</span>
                     <span>
-                      <span className="block text-[14px] font-extrabold leading-tight">Александр Ветров</span>
-                      <span className="block font-mono text-[10px] uppercase tracking-wider text-terminal/60">врач-фитотерапевт</span>
+                      <span className="block text-[14px] font-extrabold leading-tight">{BRAND.doctorName}</span>
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-terminal/60">{BRAND.doctorRole}</span>
                     </span>
                   </div>
                   <p className="mt-3 text-[15px] font-extrabold leading-snug text-nightText">
-                    Фитосборы врача-фитотерапевта
+                    {BRAND.claim}
                     <span className="mt-0.5 block text-[12px] font-semibold text-nightText/60">подбор по задаче · курс 1 месяц</span>
                   </p>
                   <div className="mt-3 flex items-center gap-2 rounded-lg border border-nightLine bg-night/80 p-2.5">
@@ -179,6 +187,7 @@ export default function DemoBlock() {
                     Узнайте стоимость сайта для вашего бренда
                   </p>
                   <p className="mt-1.5 text-[14px] text-nightText/60">
+                    Мы делаем дизайн, который работает с вашей целевой аудиторией.
                     3 коротких вопроса — и готовое сообщение для отправки. Без звонков и спама.
                   </p>
                 </div>
@@ -188,65 +197,59 @@ export default function DemoBlock() {
                   className="inline-flex shrink-0 items-center gap-2 rounded-full bg-terminal px-7 py-3.5 text-lg font-extrabold text-night transition hover:-translate-y-0.5 hover:brightness-110"
                 >
                   {openForm ? "Свернуть форму" : "Заказать сайт для моего бренда"}
-                  <svg viewBox="0 0 20 20" className={`h-4 w-4 transition-transform duration-300 ${openForm ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" className={`h-4 w-4 transition-transform duration-300 ${openForm ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                     <path d="M5 12l5 5 5-5M10 17V3" />
                   </svg>
                 </button>
               </div>
 
-              {/* Форма из 3 вопросов */}
               {openForm && (
-                <div className="rise-in mt-8 rounded-2xl border border-nightLine bg-night/70 p-5 sm:p-7">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-terminal/80">
-                    &gt; форма заявки // без бэкенда: ответьте — и сообщение готово
+                <div className="rise-in mt-8 border-t border-nightLine pt-8">
+                  <p className="text-[15px] font-extrabold text-terminal">
+                    «Мы делаем дизайн, который работает с вашей целевой аудиторией»
+                  </p>
+                  <p className="mt-1 text-[13.5px] text-nightText/60">
+                    Ответьте на 3 вопроса — соберём готовое сообщение для старта переписки.
                   </p>
 
-                  <div className="mt-6 grid gap-6 lg:grid-cols-2">
-                    <fieldset>
-                      <legend className="text-[15px] font-extrabold">
-                        1. Что продаёте?
-                      </legend>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {WHAT_SELL.map((option) => (
-                          <button
-                            key={option}
-                            type="button"
-                            onClick={() => setQ1(option)}
-                            aria-pressed={q1 === option}
-                            className={`rounded-full border px-3.5 py-2 text-[13px] font-semibold transition ${
-                              q1 === option
-                                ? "border-terminal bg-terminal/15 text-terminal"
-                                : "border-nightLine bg-transparent text-nightText/70 hover:border-terminal/50"
-                            }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    </fieldset>
+                  <div className="mt-6">
+                    <p className="text-[15px] font-extrabold">1. Что продаёте?</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {WHAT_SELL.map((option) => (
+                        <button
+                          key={option}
+                          type="button"
+                          onClick={() => setQ1(option)}
+                          className={`rounded-full border px-4 py-2 text-[13.5px] font-semibold transition ${
+                            q1 === option
+                              ? "border-terminal bg-terminal/15 text-terminal"
+                              : "border-nightLine bg-transparent text-nightText/70 hover:border-terminal/50"
+                          }`}
+                        >
+                          {option}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
-                    <fieldset>
-                      <legend className="text-[15px] font-extrabold">
-                        2. Есть ли аудитория?
-                      </legend>
-                      <div className="mt-3 flex flex-col gap-2">
-                        {AUDIENCE.map((option) => (
-                          <button
-                            key={option}
-                            type="button"
-                            onClick={() => setQ2(option)}
-                            aria-pressed={q2 === option}
-                            className={`rounded-xl border px-4 py-2.5 text-left text-[13.5px] font-semibold transition ${
-                              q2 === option
-                                ? "border-terminal bg-terminal/15 text-terminal"
-                                : "border-nightLine bg-transparent text-nightText/70 hover:border-terminal/50"
-                            }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    </fieldset>
+                  <div className="mt-6">
+                    <p className="text-[15px] font-extrabold">2. Кто ваша аудитория?</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {AUDIENCE.map((option) => (
+                        <button
+                          key={option}
+                          type="button"
+                          onClick={() => setQ2(option)}
+                          className={`rounded-full border px-4 py-2 text-[13.5px] font-semibold transition ${
+                            q2 === option
+                              ? "border-terminal bg-terminal/15 text-terminal"
+                              : "border-nightLine bg-transparent text-nightText/70 hover:border-terminal/50"
+                          }`}
+                        >
+                          {option}
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="mt-6">
@@ -270,7 +273,7 @@ export default function DemoBlock() {
                       <textarea
                         readOnly
                         value={message}
-                        rows={5}
+                        rows={6}
                         aria-label="Готовое сообщение для отправки"
                         className="mt-2 w-full resize-none rounded-lg border border-nightLine bg-night/60 px-3.5 py-3 font-mono text-[12.5px] leading-relaxed text-nightText outline-none"
                       />

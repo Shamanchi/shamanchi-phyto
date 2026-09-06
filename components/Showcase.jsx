@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import products from "../data/products.json";
 import { asset, formatPrice } from "../lib/site";
 import { useShop } from "./ShopContext";
@@ -113,6 +114,15 @@ function ProductCard({ product, index, open, onToggle, onAdd, added }) {
                 <path d="M3 6l5 5 5-5" />
               </svg>
             </button>
+            <Link
+              href={`/product/${product.id}/`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-4 py-2.5 text-[14px] font-bold text-ink/70 transition hover:border-leaf hover:text-leaf"
+            >
+              Подробнее
+              <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M4 10h8M9 6l4 4-4 4" />
+              </svg>
+            </Link>
           </div>
 
           {open && (
@@ -171,10 +181,21 @@ export default function Showcase() {
             </h2>
           </Reveal>
           <Reveal delay={100}>
-            <p className="max-w-sm text-[15px] leading-relaxed text-ink/60">
-              Одна упаковка — один курс. Честная цена и понятный состав: раскройте карточку,
-              чтобы увидеть, что внутри и как принимать.
-            </p>
+            <div className="flex flex-col items-start gap-4 lg:items-end">
+              <p className="max-w-sm text-[15px] leading-relaxed text-ink/60">
+                Одна упаковка — один курс. Честная цена и понятный состав. В каталоге —
+                фильтры по задаче и формату, поиск и подборки «Хиты» и «Новинки».
+              </p>
+              <Link
+                href="/catalog/"
+                className="inline-flex items-center gap-2 rounded-full bg-leaf px-6 py-3 text-[15px] font-bold text-paper shadow-card transition hover:-translate-y-0.5 hover:bg-leafDark"
+              >
+                Открыть каталог
+                <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5" />
+                </svg>
+              </Link>
+            </div>
           </Reveal>
         </div>
 
