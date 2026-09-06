@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Reveal from "./Reveal";
-import { TG_HANDLE, TG_URL, MAIL } from "../lib/site";
+import { TG_HANDLE, TG_URL, MAIL, asset } from "../lib/site";
 
 const WHAT_SELL = [
   "Фитосборы / травяные чаи",
@@ -40,6 +40,7 @@ export default function DemoBlock() {
   const [q2, setQ2] = useState("");
   const [q3, setQ3] = useState("");
   const [copied, setCopied] = useState(false);
+  const messageRef = useRef(null);
 
   const ready = q1 && q2 && q3.trim();
 
@@ -55,6 +56,14 @@ export default function DemoBlock() {
     ];
     return lines.join("\n");
   }, [q1, q2, q3]);
+
+  // Когда все 3 ответа готовы — панель сообщения подскролливается в зону видимости,
+  // чтобы кнопки отправки не оставались ниже края экрана.
+  useEffect(() => {
+    if (ready && messageRef.current) {
+      messageRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [ready]);
 
   const tgLink = `${TG_URL}?text=${encodeURIComponent(message)}`;
   const mailLink = `mailto:${MAIL}?subject=${encodeURIComponent("Заявка: сайт для бренда товаров здоровья")}&body=${encodeURIComponent(message)}`;
@@ -127,7 +136,7 @@ export default function DemoBlock() {
                     <span className="mt-0.5 block text-[12px] font-semibold text-[#8A7350]">акция заканчивается сегодня</span>
                   </p>
                   <div className="mt-3 flex items-center gap-2 rounded-lg bg-[#F6EEDD] p-2.5">
-                    <span className="grid h-7 w-7 place-items-center rounded-md bg-[#D9C9A8] text-[10px] font-bold text-[#6E5B3C]">Т</span>
+                    <img src={asset("/images/products/imm-sbor.svg")} alt="" aria-hidden="true" className="h-7 w-7 shrink-0 rounded-md object-cover" />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[12px] font-bold text-[#6E5B3C]">Сбор «Иммунитет»</span>
                       <span className="block text-[10px] text-[#8A7350]"><s>1 490 ₽</s> 990 ₽</span>
@@ -256,7 +265,7 @@ export default function DemoBlock() {
                   </div>
 
                   {ready && (
-                    <div className="rise-in mt-7 rounded-xl border border-terminal/40 bg-night p-4">
+                    <div ref={messageRef} className="rise-in mt-7 rounded-xl border border-terminal/40 bg-night p-4">
                       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-terminal/80">готовое сообщение</p>
                       <textarea
                         readOnly

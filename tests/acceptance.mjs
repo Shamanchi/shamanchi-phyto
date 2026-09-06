@@ -143,6 +143,62 @@ try {
   await page.waitForSelector('button:has-text("Скопировано")');
   check(true, "сообщение копируется в буфер");
 
+  // --- Демо-блок: карточка «было» — миниатюра товара вместо опечатки «Т» ---
+  const wasCard = page.locator('#demo .mock-window').filter({ hasText: "было · типовой магазин" });
+  const wasRow = wasCard.locator("div.flex").filter({ hasText: "Иммунитет" }).first();
+  const thumbSrc = (await wasRow.locator("img").getAttribute("src")) || "";
+  check(thumbSrc.includes("images/products/imm-sbor.svg"), "в карточке «было» миниатюра товара вместо «Т»", thumbSrc);
+  const soloT = await wasCard.locator("span").filter({ hasText: /^Т$/ }).count();
+  check(soloT === 0, "в карточке «было» нет опечатки «ТСбор»");
+
+  // --- Демо-блок: после ответов все 3 кнопки видны и кликабельны на 1440/768/360 ---
+  for (const width of [1440, 768, 360]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(BASE_URL, { waitUntil: "domcontentloaded", timeout: 60000 });
+    await page.waitForSelector("h1", { timeout: 30000 });
+    await page.locator("#demo").scrollIntoViewIfNeeded();
+    await page.getByRole("button", { name: "Заказать сайт для моего бренда" }).click();
+    await page.getByRole("button", { name: "Фитосборы / травяные чаи" }).click();
+    await page.getByRole("button", { name: "Уже продаю в телеграме / через знакомых" }).click();
+    await page.locator("#demo-where").fill("@moy_brand");
+    await page.waitForSelector("#demo textarea");
+    await page
+      .waitForFunction(() => {
+        const targets = [...document.querySelectorAll("#demo a, #demo button")].filter((e) =>
+          ["Написать в телеграм", "Написать на почту", "Скопировать сообщение"].some((t) => e.textContent.includes(t))
+        );
+        return (
+          targets.length === 3 &&
+          targets.every((el) => {
+            const r = el.getBoundingClientRect();
+            return r.top >= 0 && r.bottom <= window.innerHeight && r.left >= 0 && r.right <= window.innerWidth;
+          })
+        );
+      })
+      .catch(() => {});
+    const buttonsVisible = await page.evaluate(() =>
+      ["Написать в телеграм", "Написать на почту", "Скопировать сообщение"].map((text) => {
+        const el = [...document.querySelectorAll("#demo a, #demo button")].find((e) => e.textContent.includes(text));
+        if (!el) return false;
+        const r = el.getBoundingClientRect();
+        const hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+        return (
+          r.top >= 0 && r.bottom <= window.innerHeight &&
+          r.left >= 0 && r.right <= window.innerWidth &&
+          Boolean(hit) && (hit === el || el.contains(hit))
+        );
+      })
+    );
+    check(
+      buttonsVisible.length === 3 && buttonsVisible.every(Boolean),
+      `после ответов кнопки сообщения видны и кликабельны на ${width}px`,
+      JSON.stringify(buttonsVisible)
+    );
+    await page.locator("#demo .rise-in").last().scrollIntoViewIfNeeded();
+    await page.waitForTimeout(350);
+    await page.screenshot({ path: join(artifacts, `demo-form-${width}.png`) });
+  }
+
   // --- Отзывы, подвал, дисклеймеры ---
   const pageText = (await page.locator("body").innerText()).replace(/\s+/g, " ").toLowerCase();
   check(pageText.includes("демонстрационные отзывы"), "дисклеймер отзывов есть");
