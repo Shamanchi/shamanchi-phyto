@@ -39,7 +39,14 @@ export default function PollenCanvas() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
+    let lastFrame = 0;
+    const FPS_INTERVAL = 33; // ~30 fps: дрейф пыльцы остаётся плавным, CPU вдвое ниже
     const tick = (time) => {
+      if (time - lastFrame < FPS_INTERVAL) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+      lastFrame = time;
       if (!visible) return;
       ctx.clearRect(0, 0, width, height);
       for (const d of dots) {
@@ -67,7 +74,16 @@ export default function PollenCanvas() {
     resize();
     window.addEventListener("resize", resize);
     document.addEventListener("visibilitychange", onVisibility);
-    raf = requestAnimationFrame(tick);
+    const startAfterLoad = () => {
+      raf = requestAnimationFrame(tick);
+    };
+    if (document.readyState === "complete") {
+      raf = requestAnimationFrame(tick);
+    } else {
+      window.addEventListener("load", startAfterLoad, { once: true });
+      const safety = window.setTimeout(startAfterLoad, 1500);
+      window.addEventListener("load", () => window.clearTimeout(safety), { once: true });
+    }
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);

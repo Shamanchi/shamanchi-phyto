@@ -136,7 +136,7 @@ export default function DemoBlock() {
                     <span className="mt-0.5 block text-[12px] font-semibold text-[#8A7350]">акция заканчивается сегодня</span>
                   </p>
                   <div className="mt-3 flex items-center gap-2 rounded-lg bg-[#F6EEDD] p-2.5">
-                    <img src={asset("/images/products/imm-sbor.svg")} alt="" aria-hidden="true" className="h-7 w-7 shrink-0 rounded-md object-cover" />
+                    <img src={asset("/images/products/imm-sbor.svg")} alt="" aria-hidden="true" loading="lazy" className="h-7 w-7 shrink-0 rounded-md object-cover" />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[12px] font-bold text-[#6E5B3C]">Сбор «Иммунитет»</span>
                       <span className="block text-[10px] text-[#8A7350]"><s>1 490 ₽</s> 990 ₽</span>

@@ -18,17 +18,17 @@ export default function Footer() {
                 Спутник <span className="text-leaf">Фито</span>
               </span>
             </a>
-            <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-ink/60">
+            <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-ink/75">
               Демонстрационный лендинг-магазин фитосборов врача-фитотерапевта.
               Эталон разработки сайтов для ниши товаров здоровья.
             </p>
-            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-khaki">
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink/70">
               разработка — Shamanchi · демо-эталон v1
             </p>
           </div>
 
           <nav aria-label="Навигация в подвале">
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-khaki">страницы</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/70">страницы</p>
             <ul className="mt-4 space-y-2.5">
               {[...NAV_LINKS, { href: "#proizvodstvo", label: "Производство" }, { href: "#demo", label: "Это демонстрация" }].map((link) => (
                 <li key={link.href}>
@@ -41,7 +41,7 @@ export default function Footer() {
           </nav>
 
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-khaki">контакты для заказа сайта</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/70">контакты для заказа сайта</p>
             <ul className="mt-4 space-y-2.5 text-[15px] font-semibold">
               <li>
                 <a href={TG_URL} target="_blank" rel="noreferrer" className="text-ink/75 transition hover:text-leaf">
@@ -64,13 +64,13 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <p className="mt-4 font-mono text-[10px] leading-relaxed text-khaki">
+            <p className="mt-4 font-mono text-[10px] leading-relaxed text-ink/70">
               заявка-эталон: @PavelYrevichh · Shamanchi
             </p>
           </div>
         </div>
 
-        <div className="mt-10 space-y-2 border-t border-line pt-6 font-mono text-[11px] leading-relaxed text-khaki">
+        <div className="mt-10 space-y-2 border-t border-line pt-6 font-mono text-[11px] leading-relaxed text-ink/70">
           <p>
             Сайт является демонстрацией разработки: «Спутник Фито» и врач-основатель — вымышленные
             персонажи, товары и отзывы не существуют. Сайт не продаёт товары и не собирает данные.
@@ -79,7 +79,7 @@ export default function Footer() {
             Формулировки на демо соответствуют правилам рекламы БАД: «поддерживает», «традиционно
             применяется», «способствует» — без заявлений о лечебном действии.
           </p>
-          <p className="pt-1 text-[10px] text-khaki/80">© {year} Shamanchi. Все права защищены.</p>
+          <p className="pt-1 text-[10px] text-ink/70">© {year} Shamanchi. Все права защищены.</p>
         </div>
       </div>
     </footer>

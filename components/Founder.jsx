@@ -81,7 +81,7 @@ export default function Founder() {
                 <div key={label}>
                   <dt className="sr-only">{label}</dt>
                   <dd className="font-display text-3xl font-semibold text-leaf sm:text-4xl">{value}</dd>
-                  <p className="mt-1 text-[13px] leading-snug text-ink/55">{label}</p>
+                  <dd className="mt-1 text-[13px] leading-snug text-ink/55">{label}</dd>
                 </div>
               ))}
             </dl>
