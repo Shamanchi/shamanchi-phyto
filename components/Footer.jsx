@@ -1,4 +1,4 @@
-import { NAV_LINKS, TG_HANDLE, TG_URL, MAIL } from "../lib/site";
+import { NAV_LINKS, TG_HANDLE, TG_URL, MAIL, ORBIT_URL } from "../lib/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -51,6 +51,16 @@ export default function Footer() {
               <li>
                 <a href={`mailto:${MAIL}`} className="text-ink/75 transition hover:text-leaf">
                   {MAIL}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={ORBIT_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-honey px-4 py-2 text-[14px] font-bold text-ink shadow-card transition hover:-translate-y-0.5 hover:bg-[#BB7B1E]"
+                >
+                  Основной сайт Shamanchi <span aria-hidden="true">→</span>
                 </a>
               </li>
             </ul>

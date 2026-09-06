@@ -16,3 +16,21 @@
 
 ## Следующий шаг
 - Нет. Задача завершена. Отчёт >>>SWARM:REPORT отправлен.
+
+---
+
+# STATE — кросс-ссылка на orbit (Воркер-2)
+
+## Ключевые факты
+- Основной сайт студии Shamanchi/orbit: http://shamanchi.ru/ — HTTP 200 проверено; HTTPS отдаёт SSL-ошибку.
+- Трогать только: components/Footer.jsx, README.md, lib/site.js (+ state.md). DemoBlock.jsx — параллельно правит другой воркер.
+
+## Прогресс
+- [x] lib/site.js: константа ORBIT_URL = "http://shamanchi.ru/"
+- [x] components/Footer.jsx: заметная ссылка «Основной сайт Shamanchi →» в колонке контактов
+- [x] README.md: адрес основного сайта и роль спутника рядом с шапкой/блоком «Деплой»
+- [x] npm run build; ссылка в выгрузке кликабельна (headless Chrome), ведёт на http://shamanchi.ru/ — HTTP 200; регрессия 26/26 PASS
+- [x] git commit (локально); push origin main — ждёт >>>SWARM:ASK
+
+## Следующий шаг
+- Отправить >>>SWARM:ASK на git push origin main, затем финальный отчёт.
